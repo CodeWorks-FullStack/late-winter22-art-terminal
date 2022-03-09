@@ -1,12 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <h2>Art Terminal</h2>
       </div>
     </router-link>
     <button
@@ -23,14 +19,24 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
+          <router-link
+            :to="{ name: 'Home' }"
+            class="btn text-primary lighten-30 selectable text-uppercase"
+          >
+            Home
           </router-link>
         </li>
       </ul>
       <span class="navbar-text">
         <button
-          class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
+          class="
+            btn
+            selectable
+            text-primary
+            lighten-30
+            text-uppercase
+            my-2 my-lg-0
+          "
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -45,24 +51,28 @@
             id="authDropdown"
           >
             <img
-              :src="user.picture"
+              :src="account.picture"
               alt="user photo"
               height="40"
               class="rounded"
             />
-            <span class="mx-3 text-success lighten-30">{{ user.name }}</span>
+            <span class="mx-3 text-primary lighten-30">{{ account.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
             aria-labelledby="authDropdown"
           >
-            <router-link :to="{ name: 'Account' }">
+            <router-link :to="{ name: 'Profile', params: { id: account.id } }">
               <div class="list-group-item list-group-item-action hoverable">
-                Manage Account
+                My Profile
               </div>
             </router-link>
             <div
-              class="list-group-item list-group-item-action hoverable text-danger"
+              class="
+                list-group-item list-group-item-action
+                hoverable
+                text-danger
+              "
               @click="logout"
             >
               <i class="mdi mdi-logout"></i>
@@ -76,22 +86,23 @@
 </template>
 
 <script>
-import { AuthService } from '../services/AuthService'
-import { AppState } from '../AppState'
-import { computed } from 'vue'
+import { AuthService } from "../services/AuthService";
+import { AppState } from "../AppState";
+import { computed } from "vue";
 export default {
   setup() {
     return {
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
-        AuthService.loginWithPopup()
+        AuthService.loginWithPopup();
       },
       async logout() {
-        AuthService.logout({ returnTo: window.location.origin })
-      }
-    }
-  }
-}
+        AuthService.logout({ returnTo: window.location.origin });
+      },
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -110,11 +121,11 @@ export default {
 a:hover {
   text-decoration: none;
 }
-.nav-link{
+.nav-link {
   text-transform: uppercase;
 }
-.navbar-nav .router-link-exact-active{
-  border-bottom: 2px solid var(--bs-success);
+.navbar-nav .router-link-exact-active {
+  border-bottom: 2px solid var(--bs-primary);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
