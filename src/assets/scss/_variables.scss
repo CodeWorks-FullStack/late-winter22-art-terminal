@@ -8,8 +8,10 @@ $info: #54abeeff;
 $dark: #222222ff;
 $fade: #000000a8;
 $grey: #5d5d5dff;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap');
 
-$font-sans-serif: Open Sans;
+
+$font-sans-serif: 'Fredoka', sans-serif;
 $font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0));
 
