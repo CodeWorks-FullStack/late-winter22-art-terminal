@@ -1,4 +1,4 @@
-import { authGuard } from '@bcwdev/auth0provider-client'
+import { authSettled } from '@bcwdev/auth0provider-client'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 function loadPage(page) {
@@ -20,7 +20,10 @@ const routes = [
     path: '/profile/:id',
     name: 'Profile',
     component: loadPage('ProfilePage'),
-    beforeEnter: authGuard
+    // NOTE you are not allowed to enter this page, unless logged in as someone
+    // beforeEnter: authGuard
+    // NOTE anyone can view this page, after it TRIES to login first
+    beforeEnter: authSettled
   }
 ]
 
